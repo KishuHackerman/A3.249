@@ -1,3 +1,8 @@
+// -----------------------------------------------------
+// Assignment 3
+// Written by: Ayush Patel (40285846) and Krishna Patel (40200870)
+// -----------------------------------------------------
+
 import java.util.NoSuchElementException;
 
 public class CellList {
@@ -21,6 +26,10 @@ public class CellList {
             public CellNode(CellNode other) {
                 this.phone = other.phone;
                 this.next = other.next;
+            }
+
+            public CellNode(CellPhone phone) {
+                this.phone = phone;
             }
 
             public CellNode clone() {
@@ -50,6 +59,10 @@ public class CellList {
             this.size = 0;
     }
 
+    public CellNode getFirstNode() {
+        return head;  // Returns the first node (head) of the list
+    }
+
     public CellList(CellList other){
             if(other == null)
                 return;
@@ -68,6 +81,22 @@ public class CellList {
         head = new CellNode(phone, head);
         size++;
     }
+
+    // Add to the end of the list
+    public void addToEnd(CellPhone phone) {
+        CellNode newNode = new CellNode(phone);  // Create a new node with the phone
+        if (head == null) {
+            head = newNode;  // If the list is empty, make the new node the head
+        } else {
+            CellNode current = head;
+            // Traverse to the last node
+            while (current.getNext() != null) {
+                current = current.getNext();
+            }
+            current.setNext(newNode);  // Set the next of the last node to the new node
+        }
+    }
+
 
 
     // Insert at Index
@@ -207,6 +236,15 @@ public class CellList {
             current = current.getNext();
         }
         return current; // Privacy leak!
+    }
+
+    public void printList() {
+        CellNode current = head;  // Start at the head node
+
+        while (current != null) {
+            System.out.println(current.getCellPhone());  // Print the phone data from the current node
+            current = current.getNext();  // Move to the next node
+        }
     }
 
 

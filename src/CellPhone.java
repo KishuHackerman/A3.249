@@ -1,3 +1,8 @@
+// -----------------------------------------------------
+// Assignment 3
+// Written by: Ayush Patel (40285846) and Krishna Patel (40200870)
+// -----------------------------------------------------
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -14,7 +19,7 @@ public class CellPhone {
         price = 0;
     }
 
-    public CellPhone(long serialNum, String brand, int year, double price) {
+    public CellPhone(long serialNum, String brand, double price, int year) {
         this.serialNum = serialNum;
         this.brand = brand;
         this.year = year;
@@ -31,7 +36,7 @@ public class CellPhone {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter new serial number: ");
         long newSerialNum = sc.nextLong();
-        return new CellPhone(newSerialNum, this.brand, this.year, this.price);
+        return new CellPhone(newSerialNum, this.brand, this.price, this.year);
     }
 
     // Getter and setter methods for all attributes

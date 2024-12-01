@@ -1,15 +1,32 @@
+// -----------------------------------------------------
+// Assignment 3
+// Written by: Ayush Patel (40285846) and Krishna Patel (40200870)
+// -----------------------------------------------------
+
 import java.io.*;
 import java.util.Scanner;
 
 public class CellListUtilization {
 
     public static void main(String[] args) {
-        // Step (a): Create at least two empty lists
+        // Create at least two empty lists
         CellList list1 = new CellList();
-        CellList list2 = new CellList(); // Reserved for further testing
+        list1.addToEnd(new CellPhone(38909091, "Samsung", 987.28, 2022));
+        list1.addToEnd(new CellPhone(27879852, "Acer", 572.2, 2013));
+        list1.addToEnd(new CellPhone(49000883, "LG", 232.99, 2008));
+        list1.addToEnd(new CellPhone(19890004, "Nokia", 237.24, 2006));
+        list1.addToEnd(new CellPhone(890765, "Sharp", 564.22, 2009));
 
-        // Step (b): Read the file and populate list1, ensuring no duplicates
-        try (BufferedReader br = new BufferedReader(new FileReader("Cell_Info.txt"))) {
+        // Now copy list1 into list2 using the copy constructor
+        CellList list2 = new CellList(list1);
+
+        // Optionally, print the contents of list2 to verify the copy
+        System.out.println("Contents of list2 (copy of list1):");
+        list2.printList(); // Displays the copy constructor
+        System.out.println("\n");
+
+        // Read the file and populate list1, ensuring no duplicates
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Kishu\\IdeaProjects\\A3 - 249\\src\\Cell_Info.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 // Split the line into parts
@@ -22,14 +39,14 @@ public class CellListUtilization {
                         int year = Integer.parseInt(parts[3].trim());
 
                         // Print values for debugging
-                        System.out.println("Parsed Phone: SerialNum = " + serialNum + ", Brand = " + brand + ", Price = " + price + ", Year = " + year);
+                        System.out.println("Phone: SerialNum = " + serialNum + ", Brand = " + brand + ", Price = " + price + ", Year = " + year);
 
                         // Create a new CellPhone object
-                        CellPhone newPhone = new CellPhone(serialNum, brand, year, price);
+                        CellPhone newPhone = new CellPhone(serialNum, brand, price, year);
 
                         // Check for duplicates using the contains method
                         if (!list1.contains(serialNum)) {
-                            list1.addToStart(newPhone);
+                            list1.addToEnd(newPhone);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid data format on line: " + line);
@@ -41,8 +58,19 @@ public class CellListUtilization {
         }
 
         // Step (c): Show the contents of the list
-        System.out.println("Contents of list1:");
-        list1.showContents();
+        System.out.println("\nContents of list1:");
+
+        // Assuming list1 uses a CellNode structure, iterate through the list manually
+        CellList.CellNode currentNode = list1.getFirstNode();
+        while (currentNode != null) {
+            CellPhone phone = currentNode.getCellPhone(); // Assuming getCellPhone() retrieves the CellPhone object
+            System.out.println("The serial number is: " + phone.getSerialNum());
+            System.out.println("The brand is: " + phone.getBrand());
+            System.out.println("The year is: " + phone.getYear());
+            System.out.println("The price is: " + phone.getPrice());
+            System.out.println("----------------------------");
+            currentNode = currentNode.getNext(); // getNext() moves to the next node in the list
+        }
 
         // Step (d): Prompt the user to enter serial numbers for search
         Scanner scanner = new Scanner(System.in);
@@ -66,11 +94,21 @@ public class CellListUtilization {
             }
         }
 
-        // Test other methods here if needed (Step e)
-        // Example: list2.addToStart(new CellPhone(1234567, "TestBrand", 2023, 499.99));
+        CellPhone newPhone = new CellPhone(12345678, "OnePlus", 799.99, 2023);
+        list1.insertAtIndex(newPhone, 2);  // Insert OnePlus phone at index 2
+        System.out.println("\nContents of list1 after inserting OnePlus at index 2:");
+        list1.printList();
+
+        // Delete a phone at index 3
+        list1.deleteFromIndex(3);  // Delete the phone at index 3
+        System.out.println("\nContents of list1 after deleting phone at index 3:");
+        list1.printList();
+
+
         scanner.close();
     }
 }
+
 
 
 
