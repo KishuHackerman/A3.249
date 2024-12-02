@@ -2,158 +2,254 @@
 // Assignment 3
 // Written by: Ayush Patel (40285846) and Krishna Patel (40200870)
 // -----------------------------------------------------
-
 import java.util.NoSuchElementException;
 
+/**
+ * The CellList class represents a linked list to store CellPhone objects.
+ * It includes various methods for adding, removing, and modifying nodes within the list.
+ */
 public class CellList {
     private CellNode head;
     private int size;
 
-        public class CellNode {
-            private CellPhone phone;
-            private CellNode next;
+    /**
+     * Nested class representing a node in the CellList.
+     * Each node contains a CellPhone object and a reference to the next node.
+     */
+    public class CellNode {
+        private CellPhone phone;
+        private CellNode next;
 
-            public CellNode() {
-                this.phone = null;
-                this.next = null;
-            }
-
-            public CellNode(CellPhone phone, CellNode next) {
-                this.phone = phone;
-                this.next = next;
-            }
-
-            public CellNode(CellNode other) {
-                this.phone = other.phone;
-                this.next = other.next;
-            }
-
-            public CellNode(CellPhone phone) {
-                this.phone = phone;
-            }
-
-            public CellNode clone() {
-                return new CellNode(this);
-            }
-
-            public CellPhone getCellPhone() {
-                return phone;
-            }
-
-            public void setCellPhone(CellPhone phone) {
-                this.phone = phone;
-            }
-
-            public CellNode getNext() {
-                return next;
-            }
-
-            public void setNext(CellNode next) {
-                this.next = next;
-            }
-
+        /**
+         * Default constructor for CellNode.
+         * Initializes the phone and next references to null.
+         */
+        public CellNode() {
+            this.phone = null;
+            this.next = null;
         }
 
-    public CellList() {
-            this.head = null;
-            this.size = 0;
+        /**
+         * Parameterized constructor for CellNode.
+         *
+         * @param phone the CellPhone object to store in the node
+         * @param next  the reference to the next node
+         */
+        public CellNode(CellPhone phone, CellNode next) {
+            this.phone = phone;
+            this.next = next;
+        }
+
+        /**
+         * Copy constructor for CellNode.
+         *
+         * @param other the CellNode to copy from
+         */
+        public CellNode(CellNode other) {
+            this.phone = other.phone;
+            this.next = other.next;
+        }
+
+        /**
+         * Parameterized constructor to create a node with only a CellPhone object.
+         *
+         * @param phone the CellPhone object to store in the node
+         */
+        public CellNode(CellPhone phone) {
+            this.phone = phone;
+        }
+
+        /**
+         * Clones the current CellNode.
+         *
+         * @return a new CellNode with the same data as the current node
+         */
+        public CellNode clone() {
+            return new CellNode(this);
+        }
+
+        /**
+         * Gets the CellPhone object stored in this node.
+         *
+         * @return the CellPhone object
+         */
+        public CellPhone getCellPhone() {
+            return phone;
+        }
+
+        /**
+         * Sets the CellPhone object for this node.
+         *
+         * @param phone the CellPhone object to set
+         */
+        public void setCellPhone(CellPhone phone) {
+            this.phone = phone;
+        }
+
+        /**
+         * Gets the next node in the list.
+         *
+         * @return the next CellNode
+         */
+        public CellNode getNext() {
+            return next;
+        }
+
+        /**
+         * Sets the reference to the next node.
+         *
+         * @param next the next CellNode to set
+         */
+        public void setNext(CellNode next) {
+            this.next = next;
+        }
     }
 
+    /**
+     * Default constructor for CellList.
+     * Initializes the head node to null and the size to 0.
+     */
+    public CellList() {
+        this.head = null;
+        this.size = 0;
+    }
+
+    /**
+     * Gets the size of the list.
+     *
+     * @return the number of nodes in the list
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Gets the first node (head) of the list.
+     *
+     * @return the head node
+     */
     public CellNode getFirstNode() {
-        return head;  // Returns the first node (head) of the list
+        return head;
     }
 
-    public CellList(CellList other){
-            if(other == null)
-                return;
-            this.head = copyList(other.head);
-            this.size = other.size;
+    /**
+     * Copy constructor for CellList.
+     * Creates a deep copy of the provided list.
+     *
+     * @param other the CellList to copy from
+     */
+    public CellList(CellList other) {
+        if (other == null) return;
+        this.head = copyList(other.head);
+        this.size = other.size;
     }
 
+    /**
+     * Creates a deep copy of the given node and its successors.
+     *
+     * @param node the starting node to copy
+     * @return the head of the copied list
+     */
     private CellNode copyList(CellNode node) {
-            if (node == null)
-                return null;
-            return new CellNode(node.getCellPhone(),copyList(node.getNext()));
+        if (node == null) return null;
+        return new CellNode(node.getCellPhone(), copyList(node.getNext()));
     }
 
+    /**
+     * Adds a new node with the given CellPhone to the start of the list.
+     *
+     * @param phone the CellPhone object to add
+     */
     public void addToStart(CellPhone phone) {
-        System.out.println("Adding phone: " + phone);  // Print to confirm addition
+        System.out.println("Adding phone: " + phone);
         head = new CellNode(phone, head);
         size++;
     }
 
-    // Add to the end of the list
+    /**
+     * Adds a new node with the given CellPhone to the end of the list.
+     *
+     * @param phone the CellPhone object to add
+     */
     public void addToEnd(CellPhone phone) {
-        CellNode newNode = new CellNode(phone);  // Create a new node with the phone
+        CellNode newNode = new CellNode(phone);
         if (head == null) {
-            head = newNode;  // If the list is empty, make the new node the head
+            head = newNode;
         } else {
             CellNode current = head;
-            // Traverse to the last node
             while (current.getNext() != null) {
                 current = current.getNext();
             }
-            current.setNext(newNode);  // Set the next of the last node to the new node
+            current.setNext(newNode);
         }
         size++;
     }
 
-
-
-    // Insert at Index
+    /**
+     * Inserts a new node with the given CellPhone at the specified index.
+     *
+     * @param phone the CellPhone object to add
+     * @param index the position to insert the node at
+     * @throws NoSuchElementException if the index is out of bounds
+     */
     public void insertAtIndex(CellPhone phone, int index) {
-       if (index < 0 || index > size){
-           throw new NoSuchElementException("Invalid index: " + index);
-       }
-       if (index == 0){
-           addToStart(phone);
-           return;
-       }
-       CellNode current = head;
-       for(int i = 0; i < index-1; i++){
-           current = current.getNext();
-       }
-       current.setNext(new CellNode(phone,current.getNext()));
-       size++;
+        if (index < 0 || index > size) {
+            throw new NoSuchElementException("Invalid index: " + index);
+        }
+        if (index == 0) {
+            addToStart(phone);
+            return;
+        }
+        CellNode current = head;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.getNext();
+        }
+        current.setNext(new CellNode(phone, current.getNext()));
+        size++;
     }
 
-    // Delete from Index
-    public void deleteFromIndex(int index){
-            if(index < 0 || index > size){
-                throw new NoSuchElementException("Invalid index: " + index);
-            }
-            if(index == 0){
-                deleteFromStart();
-                return;
-            }
-
-            CellNode current = head;
-            for(int i = 0; i < index-1; i++){
-                current = current.getNext();
-            }
-            current.setNext(current.getNext().getNext());
-            size--;
-    }
-    public void deleteFromStart(){
-            if(head == null) {
-                return;
-            }
-                head = head.getNext();
-                size--;
-
+    /**
+     * Deletes the node at the specified index.
+     *
+     * @param index the position of the node to delete
+     * @throws NoSuchElementException if the index is out of bounds
+     */
+    public void deleteFromIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new NoSuchElementException("Invalid index: " + index);
+        }
+        if (index == 0) {
+            deleteFromStart();
+            return;
+        }
+        CellNode current = head;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.getNext();
+        }
+        current.setNext(current.getNext().getNext());
+        size--;
     }
 
-    // Replace at Index
+    /**
+     * Deletes the first node in the list.
+     */
+    public void deleteFromStart() {
+        if (head == null) return;
+        head = head.getNext();
+        size--;
+    }
+
+    /**
+     * Replaces the node at the specified index with a new CellPhone object.
+     *
+     * @param phone the CellPhone object to replace with
+     * @param index the position of the node to replace
+     */
     public void replaceAtIndex(CellPhone phone, int index) {
         if (index < 0 || index >= size) {
             System.out.println("Invalid index. Replacement skipped.");
             return;
         }
-
         CellNode current = head;
         for (int i = 0; i < index; i++) {
             current = current.getNext();
@@ -161,6 +257,12 @@ public class CellList {
         current.setCellPhone(phone);
     }
 
+    /**
+     * Searches for a node with the specified serial number.
+     *
+     * @param serialNum the serial number to search for
+     * @return the node containing the specified serial number, or null if not found
+     */
     public CellNode find(long serialNum) {
         CellNode current = head;
         int iterations = 0;
@@ -177,9 +279,12 @@ public class CellList {
         return null;
     }
 
-
-
-    // Contains
+    /**
+     * Checks if the list contains a node with the specified serial number.
+     *
+     * @param serialNum the serial number to check
+     * @return true if the serial number is found, false otherwise
+     */
     public boolean contains(long serialNum) {
         CellNode current = head;
         while (current != null) {
@@ -191,8 +296,9 @@ public class CellList {
         return false;
     }
 
-
-    // Show Contents
+    /**
+     * Displays the contents of the list.
+     */
     public void showContents() {
         CellNode current = head;
         System.out.println("The list contains:");
@@ -203,7 +309,12 @@ public class CellList {
         System.out.println("null");
     }
 
-    // Equals
+    /**
+     * Compares this list with another for equality.
+     *
+     * @param obj the object to compare with
+     * @return true if the lists are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -240,18 +351,19 @@ public class CellList {
         for (int i = 0; i < index; i++) {
             current = current.getNext();
         }
-        return current; // Privacy leak!
+        return new CellNode(current.getCellPhone(), null); // Prevents privacy link by providing copy
     }
 
+    /**
+     * Prints the list by displaying the data of each node.
+     */
     public void printList() {
-        CellNode current = head;  // Start at the head node
-
+        CellNode current = head;
         while (current != null) {
-            System.out.println(current.getCellPhone());  // Print the phone data from the current node
-            current = current.getNext();  // Move to the next node
+            System.out.println(current.getCellPhone());
+            current = current.getNext();
         }
     }
-
-
 }
+
 
