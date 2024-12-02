@@ -123,6 +123,20 @@ public class CellListUtilization {
             System.out.println("Cannot delete from index 3, the list is too small.");
         }
 
+        // Use the replaceAtIndex method to replace a phone at a specified index
+        if (list1.getSize() > 2) {  // Ensure the list has at least three elements
+            System.out.println("\nAttempting to replace the phone at index 1...");
+
+            CellPhone replacementPhone = new CellPhone(87654321, "ReplacedPhone", 649.99, 2024); // New phone for replacement
+            list1.replaceAtIndex(replacementPhone, 1);  // Replace the phone at index 1
+
+            System.out.println("\nContents of list1 after replacing the phone at index 1:");
+            list1.printList();
+        } else {
+            System.out.println("Cannot replace at index 1, the list is too small.");
+        }
+
+
         scanner.close();
     }
 }
