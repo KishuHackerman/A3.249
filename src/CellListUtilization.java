@@ -183,6 +183,18 @@ public class CellListUtilization {
             System.out.println("Cannot replace at index 1, the list is too small.");
         }
 
+        // Display the contents of the list using showContents()
+        System.out.println("\nContents of Cell_Info.txt:");
+        list1.showContents(); // Displays the contents of the list in the desired format
+
+        // Display list1 after adding predefined CellPhones
+        System.out.println("\n++++++++++++++++++++++++++++++++\nContents of list1:");
+        list1.showContents();
+
+        // Display the contents of list2 to verify the copy
+        System.out.println("\n++++++++++++++++++++++++++++++++\nContents of list2 (copy of list1):");
+        list2.showContents();
+
         // Close the scanner
         scanner.close();
     }

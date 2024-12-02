@@ -303,10 +303,12 @@ public class CellList {
         CellNode current = head;
         System.out.println("The list contains:");
         while (current != null) {
-            System.out.print(current.getCellPhone() + " -> ");
+            System.out.println("The serial number is: " + current.getCellPhone().getSerialNum());
+            System.out.println("The brand is: " + current.getCellPhone().getBrand());
+            System.out.println("The year is: " + current.getCellPhone().getYear());
+            System.out.println("The price is: " + current.getCellPhone().getPrice());
             current = current.getNext();
         }
-        System.out.println("null");
     }
 
     /**
