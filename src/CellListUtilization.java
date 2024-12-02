@@ -10,9 +10,8 @@ public class CellListUtilization {
 
     public static void main(String[] args) {
 
+        // Create CellList object that will store the infos of each phone
         CellList list1 = new CellList();
-
-
         // Read the file and populate list1, ensuring no duplicates
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Kishu\\IdeaProjects\\A3 - 249\\src\\Cell_Info.txt"))) {
             String line;
@@ -59,7 +58,7 @@ public class CellListUtilization {
             System.out.println("----------------------------");
             currentNode = currentNode.getNext(); // getNext() moves to the next node in the list
         }
-        
+
         list1.addToEnd(new CellPhone(38909091, "Samsung", 987.28, 2022));
         list1.addToEnd(new CellPhone(27879852, "Acer", 572.2, 2013));
         list1.addToEnd(new CellPhone(49000883, "LG", 232.99, 2008));
@@ -100,15 +99,25 @@ public class CellListUtilization {
         }
 
 
-        CellPhone newPhone = new CellPhone(12345678, "OnePlus", 799.99, 2023);
-        list1.insertAtIndex(newPhone, 2);  // Insert OnePlus phone at index 2
-        System.out.println("\nContents of list1 after inserting OnePlus at index 2:");
-        list1.printList();
+        // Check the size of the list before inserting a phone at index 2
+        if (list1.getSize() > 1) {  // Check if there are at least 2 elements before inserting at index 2
+            CellPhone newPhone = new CellPhone(12345678, "OnePlus", 799.99, 2023);
+            list1.insertAtIndex(newPhone, 2);  // Insert OnePlus phone at index 2
+            System.out.println("\nContents of list1 after inserting OnePlus at index 2:");
+            list1.printList();
+        } else {
+            System.out.println("Cannot insert at index 2, the list is too small.");
+        }
 
-        // Delete a phone at index 3
-        list1.deleteFromIndex(3);  // Delete the phone at index 3
-        System.out.println("\nContents of list1 after deleting phone at index 3:");
-        list1.printList();
+// Check the size of the list before deleting from index 3
+        if (list1.getSize() > 3) {  // Check if there are at least 4 elements before deleting from index 3
+            list1.deleteFromIndex(3);  // Delete the phone at index 3
+            System.out.println("\nContents of list1 after deleting phone at index 3:");
+            list1.printList();
+        } else {
+            System.out.println("Cannot delete from index 3, the list is too small.");
+        }
+
 
 
         scanner.close();

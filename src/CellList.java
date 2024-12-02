@@ -59,6 +59,10 @@ public class CellList {
             this.size = 0;
     }
 
+    public int getSize() {
+        return size;
+    }
+
     public CellNode getFirstNode() {
         return head;  // Returns the first node (head) of the list
     }
