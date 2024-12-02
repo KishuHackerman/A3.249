@@ -99,6 +99,7 @@ public class CellList {
             }
             current.setNext(newNode);  // Set the next of the last node to the new node
         }
+        size++;
     }
 
 

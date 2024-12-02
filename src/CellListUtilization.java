@@ -99,8 +99,10 @@ public class CellListUtilization {
         }
 
 
+        System.out.println("Size of list1 before insertion: " + list1.getSize());
+
         // Check the size of the list before inserting a phone at index 2
-        if (list1.getSize() > 1) {  // Check if there are at least 2 elements before inserting at index 2
+        if (list1.getSize() >= 2) {  // Ensure there are at least 2 elements before inserting at index 2
             CellPhone newPhone = new CellPhone(12345678, "OnePlus", 799.99, 2023);
             list1.insertAtIndex(newPhone, 2);  // Insert OnePlus phone at index 2
             System.out.println("\nContents of list1 after inserting OnePlus at index 2:");
@@ -109,16 +111,17 @@ public class CellListUtilization {
             System.out.println("Cannot insert at index 2, the list is too small.");
         }
 
-// Check the size of the list before deleting from index 3
-        if (list1.getSize() > 3) {  // Check if there are at least 4 elements before deleting from index 3
+        // Debugging list size before delete
+        System.out.println("Size of list1 before deletion: " + list1.getSize());
+
+        // Check the size of the list before deleting from index 3
+        if (list1.getSize() > 3) {  // Ensure there are at least 4 elements before deleting from index 3
             list1.deleteFromIndex(3);  // Delete the phone at index 3
-            System.out.println("\nContents of list1 after deleting phone at index 3:");
+            System.out.println("\nContents of list1 after deleting phone at index 3 (Will remove Lg phone):");
             list1.printList();
         } else {
             System.out.println("Cannot delete from index 3, the list is too small.");
         }
-
-
 
         scanner.close();
     }
