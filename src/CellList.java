@@ -103,7 +103,7 @@ public class CellList {
         public void setNext(CellNode next) {
             this.next = next;
         }
-    }
+    } // End of inner class
 
     /**
      * Default constructor for CellList.
