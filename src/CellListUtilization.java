@@ -17,6 +17,9 @@ public class CellListUtilization {
         list1.addToEnd(new CellPhone(19890004, "Nokia", 237.24, 2006));
         list1.addToEnd(new CellPhone(890765, "Sharp", 564.22, 2009));
 
+        System.out.println("Contents of list1:");
+        list1.printList();
+        System.out.println("\n");
         // Now copy list1 into list2 using the copy constructor
         CellList list2 = new CellList(list1);
 
