@@ -56,6 +56,7 @@ public class CellListUtilization {
             System.out.println("The year is: " + phone.getYear());
             System.out.println("The price is: " + phone.getPrice());
             System.out.println("----------------------------");
+            System.out.println("\n");
             currentNode = currentNode.getNext(); // getNext() moves to the next node in the list
         }
 
@@ -65,14 +66,14 @@ public class CellListUtilization {
         list1.addToEnd(new CellPhone(19890004, "Nokia", 237.24, 2006));
         list1.addToEnd(new CellPhone(890765, "Sharp", 564.22, 2009));
 
-        System.out.println("Contents of list1:");
+        System.out.println("++++++++++++++++++++++++++++++++\nContents of list1:");
         list1.printList();
         System.out.println("\n");
         // Now copy list1 into list2 using the copy constructor
         CellList list2 = new CellList(list1);
 
         // Optionally, print the contents of list2 to verify the copy
-        System.out.println("Contents of list2 (copy of list1):");
+        System.out.println("++++++++++++++++++++++++++++++++\nContents of list2 (copy of list1):");
         list2.printList(); // Displays the copy constructor
         System.out.println("\n");
 
@@ -81,7 +82,7 @@ public class CellListUtilization {
         System.out.println("\nEnter serial numbers to search (type -1 to stop):");
 
         while (true) {
-            System.out.print("Enter serial number: ");
+            System.out.print("\nEnter serial number: ");
             long serialNum = scanner.nextLong();
 
             if (serialNum == -1) {
@@ -99,7 +100,7 @@ public class CellListUtilization {
         }
 
 
-        System.out.println("Size of list1 before insertion: " + list1.getSize());
+        System.out.println("\nSize of list1 before insertion: " + list1.getSize());
 
         // Check the size of the list before inserting a phone at index 2
         if (list1.getSize() >= 2) {  // Ensure there are at least 2 elements before inserting at index 2
@@ -112,12 +113,12 @@ public class CellListUtilization {
         }
 
         // Debugging list size before delete
-        System.out.println("Size of list1 before deletion: " + list1.getSize());
+        System.out.println("\nSize of list1 before deletion: " + list1.getSize());
 
         // Check the size of the list before deleting from index 3
         if (list1.getSize() > 3) {  // Ensure there are at least 4 elements before deleting from index 3
             list1.deleteFromIndex(3);  // Delete the phone at index 3
-            System.out.println("\nContents of list1 after deleting phone at index 3 (Will remove Lg phone):");
+            System.out.println("++++++++++++++++++++++++++++++++\nContents of list1 after deleting phone at index 3 (Will remove Lg phone):");
             list1.printList();
         } else {
             System.out.println("Cannot delete from index 3, the list is too small.");
@@ -130,7 +131,7 @@ public class CellListUtilization {
             CellPhone replacementPhone = new CellPhone(87654321, "ReplacedPhone", 649.99, 2024); // New phone for replacement
             list1.replaceAtIndex(replacementPhone, 1);  // Replace the phone at index 1
 
-            System.out.println("\nContents of list1 after replacing the phone at index 1:");
+            System.out.println("++++++++++++++++++++++++++++++++\nContents of list1 after replacing the phone at index 1:");
             list1.printList();
         } else {
             System.out.println("Cannot replace at index 1, the list is too small.");
