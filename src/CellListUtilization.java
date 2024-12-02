@@ -9,24 +9,9 @@ import java.util.Scanner;
 public class CellListUtilization {
 
     public static void main(String[] args) {
-        // Create at least two empty lists
+
         CellList list1 = new CellList();
-        list1.addToEnd(new CellPhone(38909091, "Samsung", 987.28, 2022));
-        list1.addToEnd(new CellPhone(27879852, "Acer", 572.2, 2013));
-        list1.addToEnd(new CellPhone(49000883, "LG", 232.99, 2008));
-        list1.addToEnd(new CellPhone(19890004, "Nokia", 237.24, 2006));
-        list1.addToEnd(new CellPhone(890765, "Sharp", 564.22, 2009));
 
-        System.out.println("Contents of list1:");
-        list1.printList();
-        System.out.println("\n");
-        // Now copy list1 into list2 using the copy constructor
-        CellList list2 = new CellList(list1);
-
-        // Optionally, print the contents of list2 to verify the copy
-        System.out.println("Contents of list2 (copy of list1):");
-        list2.printList(); // Displays the copy constructor
-        System.out.println("\n");
 
         // Read the file and populate list1, ensuring no duplicates
         try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Kishu\\IdeaProjects\\A3 - 249\\src\\Cell_Info.txt"))) {
@@ -61,7 +46,7 @@ public class CellListUtilization {
         }
 
         // Step (c): Show the contents of the list
-        System.out.println("\nContents of list1:");
+        System.out.println("\nContents of Cell_Info.txt:");
 
         // Assuming list1 uses a CellNode structure, iterate through the list manually
         CellList.CellNode currentNode = list1.getFirstNode();
@@ -74,6 +59,23 @@ public class CellListUtilization {
             System.out.println("----------------------------");
             currentNode = currentNode.getNext(); // getNext() moves to the next node in the list
         }
+        
+        list1.addToEnd(new CellPhone(38909091, "Samsung", 987.28, 2022));
+        list1.addToEnd(new CellPhone(27879852, "Acer", 572.2, 2013));
+        list1.addToEnd(new CellPhone(49000883, "LG", 232.99, 2008));
+        list1.addToEnd(new CellPhone(19890004, "Nokia", 237.24, 2006));
+        list1.addToEnd(new CellPhone(890765, "Sharp", 564.22, 2009));
+
+        System.out.println("Contents of list1:");
+        list1.printList();
+        System.out.println("\n");
+        // Now copy list1 into list2 using the copy constructor
+        CellList list2 = new CellList(list1);
+
+        // Optionally, print the contents of list2 to verify the copy
+        System.out.println("Contents of list2 (copy of list1):");
+        list2.printList(); // Displays the copy constructor
+        System.out.println("\n");
 
         // Step (d): Prompt the user to enter serial numbers for search
         Scanner scanner = new Scanner(System.in);
@@ -96,6 +98,7 @@ public class CellListUtilization {
                 System.out.println("No CellPhone with serial number " + serialNum + " found.");
             }
         }
+
 
         CellPhone newPhone = new CellPhone(12345678, "OnePlus", 799.99, 2023);
         list1.insertAtIndex(newPhone, 2);  // Insert OnePlus phone at index 2
